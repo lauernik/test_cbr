@@ -15,7 +15,7 @@ class SearchPage(BasePage):
             '//input[@value="' + button_name + '"]'))
 
     def find_link(self, link):
-        self.finded_link = self.browser.find_element_by_xpath(
+        self.finded_link = self.find_element(
             '//a[@href="' + link + '"]')
 
     def click_link(self):

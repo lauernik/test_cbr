@@ -1,10 +1,8 @@
 from behave import given, when, then
-from features.pages.searchpage import SearchPage
 
 
 @given('зашли на сайт "{page}"')
 def step_impl(context, page):
-    context.gogl = SearchPage(context.browser)
     context.gogl.get_page(page)
 
 
@@ -25,9 +23,15 @@ def step_impl(context, button_name):
 
 @when('нашли ссылку "{link}"')
 def step_impl(context, link):
+    context.link_cbr = link
     context.gogl.find_link(link)
 
 
 @then('нажали на ссылку "http://www.cbr.ru/"')
 def step_impl(context):
     context.gogl.click_link()
+
+
+@then('проверили, что открыт нужный сайт')
+def step_impl(context):
+    context.cbr.check_link_url(context.link_cbr)
