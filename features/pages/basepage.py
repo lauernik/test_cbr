@@ -6,8 +6,10 @@ class BasePage:
     def get_page(self, page):
         self.browser.get(page)
 
-    def find_element(self, locator):
-        return self.browser.find_element_by_xpath(locator)
+    def find_element(self, element, attr, value):
+        return self.browser.find_element_by_xpath(
+            f'//{element}[@{attr}="{value}"]'
+        )
 
     def click_element(self, locator):
         locator.click()
