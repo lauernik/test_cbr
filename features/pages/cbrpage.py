@@ -29,5 +29,19 @@ class CbrPage(BasePage):
     def take_screenshot(self, stage):
         now_time = datetime.today().strftime("%Y-%m-%d-%H.%M.%S")
         self.browser.save_screenshot(
-            f'{stage}_{now_time}.png'
+            f'screenshots/{stage}_{now_time}.png'
         )
+
+    def click_ham_button(self):
+        self.click_element(self.find_element(
+            'span', 'class', 'burger'
+        ))
+
+    def check_warnings(self, check=False):
+        find_element = self.browser.find_element_by_xpath(
+            '//div[@id="content"]/p'
+        ).text
+        if check:
+            assert find_element != self.warning_stored_ru
+        else:
+            self.warning_stored_ru = find_element
