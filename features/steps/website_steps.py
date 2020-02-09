@@ -35,3 +35,28 @@ def step_impl(context):
 @then('проверили, что открыт нужный сайт')
 def step_impl(context):
     context.cbr.check_link_url(context.link_cbr)
+
+
+@then('нажали на ссылку "{text_link}"')
+def step_impl(context, text_link):
+    context.cbr.open_text_link(text_link)
+
+
+@then('открыли раздел "{text_link}"')
+def step_impl(context, text_link):
+    context.cbr.open_text_link(text_link)
+
+
+@when('в поле Ваша благодарность ввели значение "{input_data}"')
+def step_impl(context, input_data):
+    context.cbr.enter_data_func(input_data)
+
+
+@when('поставили галочку "{text}"')
+def step_impl(context, text):
+    context.cbr.fill_checkbox(text)
+
+
+@then('сделали скриншот')
+def step_impl(context):
+    context.cbr.take_screenshot('reception')
