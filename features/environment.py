@@ -5,6 +5,8 @@ from features.pages.cbrpage import CbrPage
 
 def before_all(context):
     context.browser = webdriver.Chrome()
+    context.browser.implicitly_wait(5)
+    context.browser.maximize_window()
     context.gogl = SearchPage(context.browser)
     context.cbr = CbrPage(context.browser)
 
