@@ -1,10 +1,11 @@
 from behave import given, when, then
-from page import SearchPage
+from features.pages.searchpage import SearchPage
 
 
 @given('зашли на сайт "{page}"')
 def step_impl(context, page):
-    context.gogl = SearchPage(context.browser, page)
+    context.gogl = SearchPage(context.browser)
+    context.gogl.get_page(page)
 
 
 @then('проверили, что появилось поле "{field}"')
