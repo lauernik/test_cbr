@@ -1,6 +1,8 @@
 from selenium import webdriver
 from features.pages.searchpage import SearchPage
 from features.pages.cbrpage import CbrPage
+from os import mkdir
+from shutil import rmtree
 
 
 def before_all(context):
@@ -9,7 +11,9 @@ def before_all(context):
     context.browser.maximize_window()
     context.gogl = SearchPage(context.browser)
     context.cbr = CbrPage(context.browser)
+    mkdir('screenshots')
 
 
 def after_all(context):
     context.browser.quit()
+    rmtree('screenshots')
