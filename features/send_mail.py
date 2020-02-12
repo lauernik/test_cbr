@@ -23,9 +23,9 @@ def send_email(receiver):
     pngfiles = paths_to_png()
     if pngfiles:
         for file in pngfiles:
-            with open(file, 'rb') as fp:
+            with open('screenshots/'+file, 'rb') as fp:
                 img = base64.b64encode(fp.read()).decode()
-                img_tags += f'<img src="data:image/jpg;base64,{img}">'
+                img_tags += f'<p>{file}<br></p><img src="data:image/jpg;base64,{img}">'
     else:
         img_tags = '<p>Во время теста что-то пошло не так.</p>'
 
@@ -38,5 +38,5 @@ def send_email(receiver):
 
 
 def paths_to_png():
-    pngfiles = ['screenshots/'+file for file in listdir('screenshots/.')]
+    pngfiles = [file for file in listdir('screenshots/.')]
     return pngfiles
