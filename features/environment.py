@@ -3,6 +3,7 @@ from features.pages.searchpage import SearchPage
 from features.pages.cbrpage import CbrPage
 from os import mkdir
 from shutil import rmtree
+from features.send_mail import send_email
 
 
 def before_all(context):
@@ -16,4 +17,5 @@ def before_all(context):
 
 def after_all(context):
     context.browser.quit()
+    send_email('test@test.com')
     rmtree('screenshots')
