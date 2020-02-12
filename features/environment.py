@@ -1,7 +1,7 @@
 from selenium import webdriver
 from features.pages.searchpage import SearchPage
 from features.pages.cbrpage import CbrPage
-from os import mkdir
+import os
 from shutil import rmtree
 from features.send_mail import send_email
 
@@ -12,7 +12,9 @@ def before_all(context):
     context.browser.maximize_window()
     context.gogl = SearchPage(context.browser)
     context.cbr = CbrPage(context.browser)
-    mkdir('screenshots')
+    if os.path.isdir('screenshots'):
+        rmtree('screenshots')
+    os.mkdir('screenshots')
 
 
 def after_all(context):
